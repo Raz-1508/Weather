@@ -1,10 +1,14 @@
 #include <stdio.h> // The header that allows you to use printf
 
 int main() {
-    int weekly_temps[7] = {28, 32, 15, 40, 12, 35, 22};
+    char days[7][4]= {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+    int weekly_temps[7];
     int total = 0;
     int freezing_days = 0;
-
+for(int i = 0; i < 7; i++) {
+        printf("Enter the temperature for day %s: ", days[i]);
+        scanf("%d", &weekly_temps[i]);
+    }
     printf("--- Weather Monitor ---\n");
 
     for (int i = 0; i < 7; i++) {
@@ -13,14 +17,13 @@ int main() {
 
         if (current_temp < 32) {
             // %d acts as a placeholder for the integer variable
-            printf("Alert: Freezing day detected at %d F\n", current_temp);
+            printf("Alert: Freezing day detected on %s\n",days[i]);
             freezing_days++;
         }
     }
 
     double average = (double)total / 7;
 
-    // \n moves the cursor to a new line, %.2f formats the double to 2 decimal places
     printf("\nWeekly Summary:\n");
     printf("Average Temperature: %.2f F\n", average);
     printf("Total Freezing Days: %d\n", freezing_days);
